@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Latihan Interaktif Bahasa Melayu</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .badge-chip {
+            transition: all 0.2s ease-in-out;
+        }
+        .badge-chip:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-emerald-800 via-teal-800 to-slate-900 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-emerald-500/20 p-3 rounded-2xl border border-emerald-400/30">
+                    <i class="fa-solid fa-book-open-reader text-2xl text-emerald-300"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">Modul Latihan Interaktif BM</h1>
+                    <p class="text-xs sm:text-sm text-emerald-200">Latihan Kendiri, Semakan Automatik & Penghantaran Emel</p>
+                </div>
+            </div>
+            
+            <!-- Target Email Indicator -->
+            <div class="bg-white/10 px-4 py-2 rounded-xl border border-white/15 text-xs flex items-center gap-2">
+                <i class="fa-solid fa-envelope text-emerald-300"></i>
+                <span>Guru: <strong class="text-emerald-200">chernjiaying@yphs.edu.my</strong></span>
+            </div>
+        </div>
+
+        <!-- Section Navigation Tabs -->
+        <nav class="bg-slate-900/80 border-t border-slate-700/50 backdrop-blur">
+            <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scrollbar gap-2 sm:gap-6 text-sm font-medium text-slate-300">
+                <button onclick="scrollToSection('sec-info')" class="py-3 px-2 flex items-center gap-2 whitespace-nowrap hover:text-emerald-400">
+                    <i class="fa-solid fa-user-pen"></i> Info
+                </button>
+                <button onclick="scrollToSection('sec-b1')" class="py-3 px-2 flex items-center gap-2 whitespace-nowrap hover:text-emerald-400">
+                    <i class="fa-solid fa-list-check"></i> Bahagian 1
+                </button>
+                <button onclick="scrollToSection('sec-b2')" class="py-3 px-2 flex items-center gap-2 whitespace-nowrap hover:text-emerald-400">
+                    <i class="fa-solid fa-diagram-project"></i> Bahagian 2
+                </button>
+                <button onclick="scrollToSection('sec-b3')" class="py-3 px-2 flex items-center gap-2 whitespace-nowrap hover:text-emerald-400">
+                    <i class="fa-solid fa-tags"></i> Bahagian 3
+                </button>
+                <button onclick="scrollToSection('sec-b4')" class="py-3 px-2 flex items-center gap-2 whitespace-nowrap hover:text-emerald-400">
+                    <i class="fa-solid fa-pen-nib"></i> Bahagian 4
+                </button>
+                <button onclick="scrollToSection('sec-b5')" class="py-3 px-2 flex items-center gap-2 whitespace-nowrap hover:text-emerald-400">
+                    <i class="fa-solid fa-cubes"></i> Bahagian 5
+                </button>
+                <button onclick="scrollToSection('sec-submit')" class="py-3 px-2 flex items-center gap-2 whitespace-nowrap text-emerald-400 font-bold ml-auto">
+                    <i class="fa-solid fa-paper-plane"></i> Hantar
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-10 flex-grow w-full">
+
+        <!-- Student Info Card -->
+        <section id="sec-info" class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-id-card text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold text-slate-800">Maklumat Pelajar</h2>
+                    <p class="text-xs text-slate-500">Sila isi nama dan kelas anda sebelum menjawab soalan.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="studentName" class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nama Pelajar <span class="text-red-500">*</span></label>
+                    <input type="text" id="studentName" placeholder="Contoh: Tan Wei Ming" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-sm">
+                </div>
+                <div>
+                    <label for="studentClass" class="block text-xs font-semibold uppercase text-slate-600 mb-1">Kelas <span class="text-red-500">*</span></label>
+                    <input type="text" id="studentClass" placeholder="Contoh: Tingkatan 1 Yi" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-sm">
+                </div>
+            </div>
+        </section>
+
+        <!-- BAHAGIAN 1 -->
+        <section id="sec-b1" class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-slate-200 pb-4">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold mb-1">BAHAGIAN 1</span>
+                    <h2 class="text-xl font-bold text-slate-800">KATA HAMPIR SAMA MAKNA</h2>
+                    <p class="text-xs text-slate-500">Pilih perkataan yang paling tepat dalam kurungan.</p>
+                </div>
+                <div id="score-b1" class="text-xs font-semibold bg-slate-100 text-slate-700 px-3 py-1.5 rounded-xl border border-slate-200 self-start sm:self-center">
+                    Markah: <span class="text-emerald-600 font-bold text-sm">0</span> / 8
+                </div>
+            </div>
+
+            <div id="b1-questions" class="space-y-4"></div>
+        </section>
+
+        <!-- BAHAGIAN 2 -->
+        <section id="sec-b2" class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold mb-1">BAHAGIAN 2</span>
+                <h2 class="text-xl font-bold text-slate-800">SUBJEK DAN PREDIKAT</h2>
+                <p class="text-xs text-slate-500">Bahagikan ayat berikut kepada bahagian Subjek dan Predikat dengan betul.</p>
+            </div>
+
+            <div id="b2-questions" class="space-y-6"></div>
+        </section>
+
+        <!-- BAHAGIAN 3 -->
+        <section id="sec-b3" class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-slate-200 pb-4">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold mb-1">BAHAGIAN 3</span>
+                    <h2 class="text-xl font-bold text-slate-800">JENIS AYAT</h2>
+                    <p class="text-xs text-slate-500">Kenal pastikan jenis-jenis ayat yang berikut (Ayat Penyata, Ayat Tanya, Ayat Perintah, Ayat Seruan).</p>
+                </div>
+                <div id="score-b3" class="text-xs font-semibold bg-slate-100 text-slate-700 px-3 py-1.5 rounded-xl border border-slate-200 self-start sm:self-center">
+                    Markah: <span class="text-purple-600 font-bold text-sm">0</span> / 15
+                </div>
+            </div>
+
+            <div id="b3-questions" class="space-y-4"></div>
+        </section>
+
+        <!-- BAHAGIAN 4 -->
+        <section id="sec-b4" class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-bold mb-1">BAHAGIAN 4</span>
+                <h2 class="text-xl font-bold text-slate-800">JENIS-JENIS AYAT PERINTAH</h2>
+                <p class="text-xs text-slate-500">Tulis satu contoh ayat yang berkaitan dengan jenis ayat perintah yang diberi.</p>
+            </div>
+
+            <div id="b4-questions" class="space-y-6"></div>
+        </section>
+
+        <!-- BAHAGIAN 5 -->
+        <section id="sec-b5" class="glass-card rounded-2xl p-6 shadow-sm border border-slate-200 space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-slate-200 pb-4">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-xs font-bold mb-1">BAHAGIAN 5</span>
+                    <h2 class="text-xl font-bold text-slate-800">PENJODOH BILANGAN</h2>
+                    <p class="text-xs text-slate-500">Isikan tempat kosong dengan pilihan yang paling sesuai daripada Bank Perkataan.</p>
+                </div>
+                <div id="score-b5" class="text-xs font-semibold bg-slate-100 text-slate-700 px-3 py-1.5 rounded-xl border border-slate-200 self-start sm:self-center">
+                    Markah: <span class="text-teal-600 font-bold text-sm">0</span> / 15
+                </div>
+            </div>
+
+            <!-- Word Bank Box -->
+            <div class="bg-gradient-to-r from-teal-50 to-emerald-50 p-4 rounded-xl border border-teal-200">
+                <div class="flex items-center gap-2 mb-2 text-xs font-bold text-teal-800 uppercase tracking-wider">
+                    <i class="fa-solid fa-box-archive"></i> Bank Perkataan (Pilihan Jawapan)
+                </div>
+                <div id="word-bank-chips" class="flex flex-wrap gap-2 text-xs font-medium text-slate-700"></div>
+            </div>
+
+            <div id="b5-questions" class="space-y-4"></div>
+        </section>
+
+        <!-- Submission & Score Summary Card -->
+        <section id="sec-submit" class="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 border border-slate-700">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-bold border border-emerald-400/30">RINGKASAN LATIHAN</span>
+                    <h2 class="text-2xl font-extrabold mt-2">Semak & Hantar Kepada Guru</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-1">Selesaikannya dan hantar laporan jawapan anda terus ke emel cikgu: <strong class="text-emerald-300 underline">chernjiaying@yphs.edu.my</strong></p>
+                </div>
+
+                <!-- Total Score Display -->
+                <div class="bg-white/10 backdrop-blur px-6 py-4 rounded-2xl border border-white/10 text-center min-w-[180px]">
+                    <div class="text-xs text-slate-300 font-medium">Jumlah Markah Auto</div>
+                    <div class="text-3xl font-black text-emerald-400 mt-1" id="total-score-display">0 / 38</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">(Bahagian 1, 3 & 5)</div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 pt-4 border-t border-slate-700">
+                <button onclick="checkAllAnswers()" class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-xl transition shadow-lg flex items-center gap-2">
+                    <i class="fa-solid fa-calculator"></i> Semak Semua Jawapan
+                </button>
+                <button onclick="handleEmailSubmission()" class="px-6 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold rounded-xl transition shadow-lg flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Hantar Sekarang (Email)
+                </button>
+                <button onclick="copyTextReport()" class="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-100 font-semibold rounded-xl transition flex items-center gap-2">
+                    <i class="fa-solid fa-copy"></i> Salin Laporan (Text)
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 text-center">
+        <div class="max-w-6xl mx-auto px-4 space-y-1">
+            <p>© Modul Interaktif Bahasa Melayu - Yong Peng High School (YPHS)</p>
+            <p>Disediakan untuk kegunaan pengajaran & pembelajaran Bahasa Melayu.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Overlay -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-msg" class="text-xs font-medium">Mesej pemberitahuan</span>
+    </div>
+
+    <!-- Modal Report Overlay -->
+    <div id="reportModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-5 shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b border-slate-200 pb-3">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane text-emerald-600"></i> Pilih Kaedah Penghantaran
+                </h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <p class="text-xs text-slate-600">Sila pilih kaedah untuk menghantar laporan lengkap jawapan anda ke emel cikgu: <strong class="text-emerald-700 underline">chernjiaying@yphs.edu.my</strong></p>
+
+            <!-- Text Preview Box -->
+            <textarea id="modalReportText" readonly class="w-full flex-grow p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-mono text-slate-700 outline-none resize-none h-48 sm:h-60"></textarea>
+
+            <!-- Dual Direct Method Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <button onclick="sendViaGmail()" class="w-full py-3 px-4 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-envelope text-base"></i> Cara 1: Buka Gmail Web (一键直达)
+                </button>
+                <button onclick="copyTextReport()" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-copy text-base"></i> Cara 2: Salin Teks Laporan (一键复制)
+                </button>
+            </div>
+
+            <div class="flex justify-between items-center border-t border-slate-100 pt-3">
+                <button onclick="triggerMailto()" class="text-xs text-slate-500 hover:text-emerald-600 underline font-medium flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Cara 3: Guna Aplikasi Emel Default
+                </button>
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATA STRUCTURES FOR EXERCISES
+
+        const b1Data = [
+            { id: 1, q: "Lelaki tua itu berjalan perlahan-lahan kerana badannya sudah ( bengkok / bongkok ).", opt: ["bengkok", "bongkok"], ans: "bongkok", exp: "bongkok = 驼背 (kelengkungan pada belakang badan orang tua); bengkok = 弯曲 (tidak lurus seperti garisan/dawai)." },
+            { id: 2, q: "Tali persahabatan yang terjalin erat antara mereka berdua akhirnya ( putus / patah ) kerana salah faham.", opt: ["putus", "patah"], ans: "putus", exp: "putus = 断开 (untuk tali, hubungan, bekalan); patah = 折断 (untuk benda keras seperti dahan, pensel, tulang)." },
+            { id: 3, q: "Pinggan seramik yang jatuh ke lantai itu mengalami ( retak / belah ) pada bahagian tepi.", opt: ["retak", "belah"], ans: "retak", exp: "retak = 裂痕 (garis pecah halus tetapi belum terpisah); belah = 裂开/切开 (terbahagi dua)." },
+            { id: 4, q: "Suasana di dalam dewan mesyuarat menjadi agak ( tegang / kejur ) semasa isu sensitif itu dibincangkan.", opt: ["tegang", "kejur"], ans: "tegang", exp: "tegang = 紧张/绷紧 (suasana penuh tekanan / tali tegang); kejur = 僵硬 (kaku tidak boleh dilentur)." },
+            { id: 5, q: "Dahan pokok mangga di belakang rumah ( patah / putus ) dihentam ribut semalam.", opt: ["patah", "putus"], ans: "patah", exp: "patah = 折断 (dahan pokok keras yang terputus akibat daya/ribut)." },
+            { id: 6, q: "Janganlah kita berfikiran ( serong / condong ) terhadap niat baik kawan-kawan.", opt: ["serong", "condong"], ans: "serong", exp: "serong = 歪斜/斜念 (sangka buruk/fikiran melencong); condong = 倾斜 (kedudukan fizikal seperti pokok/matahari)." },
+            { id: 7, q: "Kedudukan matahari semakin ( condong / bengkok ) ke barat menandakan waktu petang menjelang.", opt: ["condong", "bengkok"], ans: "condong", exp: "condong = 倾斜 (kedudukan matahari menghampiri waktu terbenam)." },
+            { id: 8, q: "Mangsa kemalangan itu ditemui dalam keadaan kaku dan ( kejur / tegang ) di dalam kenderaan.", opt: ["kejur", "tegang"], ans: "kejur", exp: "kejur = 僵硬 (badan/mayat yang kaku dan keras)." }
+        ];
+
+        const b2Data = [
+            { id: 1, sentence: "Ceramah motivasi itu berjaya mengubah sikap pelajar.", subjek: "Ceramah motivasi itu", predikat: "berjaya mengubah sikap pelajar." },
+            { id: 2, sentence: "Rumah di tepi sungai itu hanyut akibat banjir besar.", subjek: "Rumah di tepi sungai itu", predikat: "hanyut akibat banjir besar." },
+            { id: 3, sentence: "Kami akan melaksanakan segala tugas yang diberikan dengan penuh dedikasi.", subjek: "Kami", predikat: "akan melaksanakan segala tugas yang diberikan dengan penuh dedikasi." },
+            { id: 4, sentence: "Puan Amalina sedang menjahit baju kurung sementara menjaga anaknya yang sedang tidur.", subjek: "Puan Amalina", predikat: "sedang menjahit baju kurung sementara menjaga anaknya yang sedang tidur." },
+            { id: 5, sentence: "Adik sedang bermain kejar-mengejar dengan kawan-kawannya di halaman rumah.", subjek: "Adik", predikat: "sedang bermain kejar-mengejar dengan kawan-kawannya di halaman rumah." },
+            { id: 6, sentence: "Projek perumahan itu sudah tergendala selama tiga tahun.", subjek: "Projek perumahan itu", predikat: "sudah tergendala selama tiga tahun." }
+        ];
+
+        const b3Data = [
+            { id: 1, q: "Oh, rupa-rupanya kamu yang ambil barang saya!", ans: "Ayat Seruan" },
+            { id: 2, q: "Aduhai, malangnya nasib saya!", ans: "Ayat Seruan" },
+            { id: 3, q: "Jangan pijak rumput itu.", ans: "Ayat Perintah" },
+            { id: 4, q: "Wah, besarnya rumah kamu!", ans: "Ayat Seruan" },
+            { id: 5, q: "Siapakah yang bertugas untuk merasmikan mesyuarat ini?", ans: "Ayat Tanya" },
+            { id: 6, q: "Usah awak bercakap bohong lagi. Saya sudah tahu hal yang sebenarnya.", ans: "Ayat Perintah" },
+            { id: 7, q: "Persembahan murid-murid Tingkatan Satu Yi mendapat tepukan yang gemuruh daripada penonton.", ans: "Ayat Penyata" },
+            { id: 8, q: "Bilakah tarikh perkhawainan Azmi?", ans: "Ayat Tanya" },
+            { id: 9, q: "Harap hadirin bersabar seketika.", ans: "Ayat Perintah" },
+            { id: 10, q: "Aduhai, kasihan sekali nasib mangsa itu!", ans: "Ayat Seruan" },
+            { id: 11, q: "Wahai murid-murid, marilah berganding bahu menyiapkan kerja ini!", ans: "Ayat Perintah" },
+            { id: 12, q: "Janganlah meletak buku itu di situ.", ans: "Ayat Perintah" },
+            { id: 13, q: "Jemputlah minum kopi.", ans: "Ayat Perintah" },
+            { id: 14, q: "Tolong hantar jawapan sebelum Hari Rabu.", ans: "Ayat Perintah" },
+            { id: 15, q: "Siapkanlah kerja ini sekarang.", ans: "Ayat Perintah" }
+        ];
+
+        const b4Data = [
+            { id: 1, type: "Jenis ayat suruhan", desc: "Kata kerja tanpa kata khusus, sering menggunakan partikel -lah", sample: "Bacalah buku ini sekarang. / Siapkanlah kerja sekolah kamu segera." },
+            { id: 2, type: "Jenis ayat larangan", desc: "Menggunakan kata larangan seperti 'jangan' atau 'usah'", sample: "Jangan bermain di tepi jalan yang sibuk itu. / Usah bersedih lagi." },
+            { id: 3, type: "Jenis ayat silaan", desc: "Menggunakan kata silaan seperti 'sila' atau 'jemput'", sample: "Sila masuk ke dalam bilik mesyuarat. / Jemputlah minum kopi yang disediakan." },
+            { id: 4, type: "Jenis ayat permintaan", desc: "Menggunakan kata permintaan seperti 'minta', 'tolong', atau 'harap'", sample: "Tolong hantar tugasan ini sebelum hari Rabu. / Harap hadirin sekalian bersabar." }
+        ];
+
+        const b5WordBank = [
+            "kawan", "helai", "rumpun", "sisir", "pasukan", 
+            "baris", "potong", "batang", "pucuk", "cucuk", 
+            "butir", "ruas", "bidang", "ulas", "kuntum"
+        ];
+
+        const b5Data = [
+            { id: 1, prefix: "Mak Cik Tina membeli beberapa ", suffix: " telur dari pasar.", ans: "butir" },
+            { id: 2, prefix: "Datuk Kim membeli dua ", suffix: " pisang emas di gerai buah-buahan untuk dijadikan pencuci mulut.", ans: "sisir" },
+            { id: 3, prefix: "Nenek membeli se", suffix: " permaidani baharu yang berwarna ungu untuk menggantikan permaidani yang usang itu.", ans: "bidang" },
+            { id: 4, prefix: "Abang membelikan adik tiga ", suffix: " sate ayam yang dijual di pasar malam.", ans: "cucuk" },
+            { id: 5, prefix: "Ibu memotong beberapa ", suffix: " tembikai untuk dihidangkan kepada tetamu yang datang.", ans: "potong" },
+            { id: 6, prefix: "Kami melihat se", suffix: " burung terbang tinggi kembali ke sarang pada waktu senja.", ans: "kawan" },
+            { id: 7, prefix: "Pak Cik Hisham menanam beberapa ", suffix: " serai dan kunyit di kebunnya.", ans: "rumpun" },
+            { id: 8, prefix: "Terdapat beberapa ", suffix: " pokok durian di kebun datuk.", ans: "baris" },
+            { id: 9, prefix: "Abang telah makan lapan ", suffix: " durian Musang King yang ditanam oleh datuk.", ans: "ulas" },
+            { id: 10, prefix: "Di tepi kebun itu ada se", suffix: " sungai. Air sungai di situ sangat jernih.", ans: "batang" },
+            { id: 11, prefix: "Puan Lisa memetik beberapa ", suffix: " bunga ros untuk menghias rumah.", ans: "kuntum" },
+            { id: 12, prefix: "Kelvin mengutip beberapa ", suffix: " daun kering untuk membuat kraf tangan.", ans: "helai" },
+            { id: 13, prefix: "Encik Lim memotong beberapa ", suffix: " tebu segar dari kebun untuk dibuat minuman.", ans: "ruas" },
+            { id: 14, prefix: "Empat lelaki bersenjatakan dua ", suffix: " pistol melarikan kira-kira 15 kilogram emas bernilai RM9.7 juta dari sebuah kedai emas di Jalan Tun Sambanthan.", ans: "pucuk" },
+            { id: 15, prefix: "Se", suffix: " polis sedang meronda di kawasan itu.", ans: "pasukan" }
+        ];
+
+        // USER RESPONSES STATE
+        let userB1 = {};
+        let userB2 = {};
+        let userB3 = {};
+        let userB4 = {};
+        let userB5 = {};
+
+        // RENDER FUNCTIONS
+        function renderB1() {
+            const container = document.getElementById("b1-questions");
+            if (!container) return;
+            container.innerHTML = b1Data.map(item => `
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 transition space-y-3">
+                    <div class="text-sm font-medium text-slate-800">
+                        <span class="font-bold text-emerald-700">${item.id}.</span> ${item.q}
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.opt.map(option => `
+                            <button onclick="selectB1(${item.id}, '${option}')" id="btn-b1-${item.id}-${option}" class="badge-chip px-4 py-2 rounded-xl border border-slate-300 text-xs font-semibold hover:border-emerald-500 bg-white text-slate-700">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="fb-b1-${item.id}" class="hidden text-xs p-3 rounded-lg"></div>
+                </div>
+            `).join('');
+        }
+
+        function renderB2() {
+            const container = document.getElementById("b2-questions");
+            if (!container) return;
+            container.innerHTML = b2Data.map(item => `
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                    <div class="text-sm font-semibold text-slate-800 border-b border-slate-200 pb-2">
+                        <span class="text-blue-600 font-bold">${item.id}.</span> Ayat: "${item.sentence}"
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <label class="block font-semibold text-slate-600 mb-1">Subjek:</label>
+                            <input type="text" id="b2-subjek-${item.id}" oninput="userB2[${item.id}] = userB2[${item.id}] || {}; userB2[${item.id}].subjek = this.value" placeholder="Tulis bahagian subjek..." class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-1 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-slate-600 mb-1">Predikat:</label>
+                            <input type="text" id="b2-predikat-${item.id}" oninput="userB2[${item.id}] = userB2[${item.id}] || {}; userB2[${item.id}].predikat = this.value" placeholder="Tulis bahagian predikat..." class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-1 focus:ring-blue-500 outline-none">
+                        </div>
+                    </div>
+                    <button onclick="toggleSampleB2(${item.id})" class="text-[11px] text-blue-600 font-bold hover:underline flex items-center gap-1 mt-1">
+                        <i class="fa-solid fa-eye"></i> Lihat Jawapan Cadangan
+                    </button>
+                    <div id="sample-b2-${item.id}" class="hidden text-xs bg-blue-50/80 border border-blue-200 p-3 rounded-lg text-blue-900 space-y-1">
+                        <div><strong>Subjek:</strong> ${item.subjek}</div>
+                        <div><strong>Predikat:</strong> ${item.predikat}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderB3() {
+            const container = document.getElementById("b3-questions");
+            if (!container) return;
+            const options = ["Sila Pilih...", "Ayat Penyata", "Ayat Tanya", "Ayat Perintah", "Ayat Seruan"];
+            
+            container.innerHTML = b3Data.map(item => `
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="text-sm font-medium text-slate-800 sm:w-2/3">
+                        <span class="font-bold text-purple-700">${item.id}.</span> ${item.q}
+                    </div>
+                    <div class="sm:w-1/3">
+                        <select id="select-b3-${item.id}" onchange="selectB3(${item.id}, this.value)" class="w-full px-3 py-2 text-xs font-semibold rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-purple-500 outline-none">
+                            ${options.map(opt => `<option value="${opt === 'Sila Pilih...' ? '' : opt}">${opt}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div id="fb-b3-${item.id}" class="hidden text-xs font-bold sm:w-auto"></div>
+                </div>
+            `).join('');
+        }
+
+        function renderB4() {
+            const container = document.getElementById("b4-questions");
+            if (!container) return;
+            container.innerHTML = b4Data.map(item => `
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                    <div class="text-sm font-bold text-amber-800 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-circle"></i> Soalan ${item.id}: ${item.type}
+                    </div>
+                    <p class="text-xs text-slate-500">${item.desc}</p>
+                    <textarea id="b4-text-${item.id}" oninput="userB4[${item.id}] = this.value" placeholder="Tulis contoh ayat anda di sini..." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none resize-none h-20"></textarea>
+                    
+                    <button onclick="toggleSampleB4(${item.id})" class="text-[11px] text-amber-700 font-bold hover:underline flex items-center gap-1">
+                        <i class="fa-solid fa-lightbulb"></i> Lihat Contoh Jawapan Cadangan
+                    </button>
+                    <div id="sample-b4-${item.id}" class="hidden text-xs bg-amber-50 border border-amber-200 p-3 rounded-lg text-amber-900">
+                        <strong>Contoh:</strong> ${item.sample}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderWordBank() {
+            const container = document.getElementById("word-bank-chips");
+            if (!container) return;
+            container.innerHTML = b5WordBank.map(word => `
+                <span class="px-2.5 py-1 bg-white border border-teal-300 text-teal-800 rounded-lg shadow-sm font-mono">${word}</span>
+            `).join('');
+        }
+
+        function renderB5() {
+            const container = document.getElementById("b5-questions");
+            if (!container) return;
+            container.innerHTML = b5Data.map(item => `
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                    <div class="text-sm font-medium text-slate-800 leading-relaxed">
+                        <span class="font-bold text-teal-700">${item.id}.</span> ${item.prefix}
+                        <select id="select-b5-${item.id}" onchange="selectB5(${item.id}, this.value)" class="inline-block mx-1 px-3 py-1 text-xs font-bold font-mono text-teal-800 bg-white border-2 border-teal-300 rounded-lg focus:ring-2 focus:ring-teal-500 outline-none">
+                            <option value="">[ Pilih Penjodoh Bilangan ]</option>
+                            ${b5WordBank.map(w => `<option value="${w}">${w}</option>`).join('')}
+                        </select>
+                        ${item.suffix}
+                    </div>
+                    <div id="fb-b5-${item.id}" class="hidden text-xs font-bold pt-1"></div>
+                </div>
+            `).join('');
+        }
+
+        // DIRECT BULLETPROOF INITIALIZATION
+        function initApp() {
+            renderB1();
+            renderB2();
+            renderB3();
+            renderB4();
+            renderB5();
+            renderWordBank();
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initApp);
+        } else {
+            initApp();
+        }
+
+        // INTERACTIVE SELECTION HANDLERS
+
+        function selectB1(id, value) {
+            userB1[id] = value;
+            b1Data.find(q => q.id === id).opt.forEach(opt => {
+                const btn = document.getElementById(`btn-b1-${id}-${opt}`);
+                if (opt === value) {
+                    btn.className = "badge-chip px-4 py-2 rounded-xl border-2 border-emerald-600 bg-emerald-600 text-white text-xs font-bold shadow-sm";
+                } else {
+                    btn.className = "badge-chip px-4 py-2 rounded-xl border border-slate-300 text-xs font-semibold hover:border-emerald-500 bg-white text-slate-700";
+                }
+            });
+            checkB1Single(id);
+            updateTotalScore();
+        }
+
+        function selectB3(id, value) {
+            userB3[id] = value;
+            checkB3Single(id);
+            updateTotalScore();
+        }
+
+        function selectB5(id, value) {
+            userB5[id] = value;
+            checkB5Single(id);
+            updateTotalScore();
+        }
+
+        // SINGLE QUESTION CHECKING
+
+        function checkB1Single(id) {
+            const q = b1Data.find(item => item.id === id);
+            const userAns = userB1[id];
+            const fb = document.getElementById(`fb-b1-${id}`);
+            if (!fb) return;
+            fb.classList.remove("hidden");
+
+            if (userAns === q.ans) {
+                fb.className = "text-xs p-3 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-200 block";
+                fb.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> <strong>Betul!</strong> (${q.ans}) - ${q.exp}`;
+            } else {
+                fb.className = "text-xs p-3 rounded-xl bg-rose-100 text-rose-900 border border-rose-200 block";
+                fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-600"></i> <strong>Salah.</strong> Jawapan betul: <strong>${q.ans}</strong>. <br><span class="text-[11px] opacity-90">${q.exp}</span>`;
+            }
+        }
+
+        function checkB3Single(id) {
+            const q = b3Data.find(item => item.id === id);
+            const userAns = userB3[id];
+            const fb = document.getElementById(`fb-b3-${id}`);
+            if (!fb) return;
+            fb.classList.remove("hidden");
+
+            if (!userAns) {
+                fb.classList.add("hidden");
+                return;
+            }
+
+            if (userAns === q.ans) {
+                fb.className = "text-xs font-bold text-emerald-600 flex items-center gap-1";
+                fb.innerHTML = `<i class="fa-solid fa-check-circle"></i> Betul`;
+            } else {
+                fb.className = "text-xs font-bold text-rose-600 flex items-center gap-1";
+                fb.innerHTML = `<i class="fa-solid fa-times-circle"></i> Salah (Betul: ${q.ans})`;
+            }
+        }
+
+        function checkB5Single(id) {
+            const q = b5Data.find(item => item.id === id);
+            const userAns = userB5[id];
+            const fb = document.getElementById(`fb-b5-${id}`);
+            if (!fb) return;
+            fb.classList.remove("hidden");
+
+            if (!userAns) {
+                fb.classList.add("hidden");
+                return;
+            }
+
+            if (userAns === q.ans) {
+                fb.className = "text-xs font-bold text-emerald-600 flex items-center gap-1 pt-1";
+                fb.innerHTML = `<i class="fa-solid fa-check-circle"></i> Tepat sekali!`;
+            } else {
+                fb.className = "text-xs font-bold text-rose-600 flex items-center gap-1 pt-1";
+                fb.innerHTML = `<i class="fa-solid fa-times-circle"></i> Salah. Jawapan yang betul ialah: "${q.ans}"`;
+            }
+        }
+
+        // TOGGLE SAMPLE ANSWERS
+        function toggleSampleB2(id) {
+            const el = document.getElementById(`sample-b2-${id}`);
+            if (el) el.classList.toggle("hidden");
+        }
+
+        function toggleSampleB4(id) {
+            const el = document.getElementById(`sample-b4-${id}`);
+            if (el) el.classList.toggle("hidden");
+        }
+
+        // CALCULATE SCORES
+        function calculateScores() {
+            let scoreB1 = 0;
+            b1Data.forEach(q => { if (userB1[q.id] === q.ans) scoreB1++; });
+
+            let scoreB3 = 0;
+            b3Data.forEach(q => { if (userB3[q.id] === q.ans) scoreB3++; });
+
+            let scoreB5 = 0;
+            b5Data.forEach(q => { if (userB5[q.id] === q.ans) scoreB5++; });
+
+            return {
+                b1: scoreB1,
+                b3: scoreB3,
+                b5: scoreB5,
+                totalAuto: scoreB1 + scoreB3 + scoreB5
+            };
+        }
+
+        function updateTotalScore() {
+            const scores = calculateScores();
+            
+            const elB1 = document.getElementById("score-b1");
+            if (elB1) elB1.querySelector("span").innerText = scores.b1;
+
+            const elB3 = document.getElementById("score-b3");
+            if (elB3) elB3.querySelector("span").innerText = scores.b3;
+
+            const elB5 = document.getElementById("score-b5");
+            if (elB5) elB5.querySelector("span").innerText = scores.b5;
+
+            const elTotal = document.getElementById("total-score-display");
+            if (elTotal) elTotal.innerText = `${scores.totalAuto} / 38`;
+        }
+
+        function checkAllAnswers() {
+            b1Data.forEach(q => { if (userB1[q.id]) checkB1Single(q.id); });
+            b3Data.forEach(q => checkB3Single(q.id));
+            b5Data.forEach(q => checkB5Single(q.id));
+
+            updateTotalScore();
+            showToast("Semua soalan telah disemak secara automatik!", "success");
+        }
+
+        // REPORT GENERATION & EMAIL SUBMISSION
+
+        function generateReportText() {
+            const name = document.getElementById("studentName").value.trim() || "Tiada Nama";
+            const studentClass = document.getElementById("studentClass").value.trim() || "Tiada Kelas";
+            const scores = calculateScores();
+            const dateStr = new Date().toLocaleString("ms-MY");
+
+            let report = `====================================\n`;
+            report += `  LAPORAN LATIHAN BAHASA MELAYU (LENGKAP)\n`;
+            report += `====================================\n`;
+            report += `Nama Pelajar : ${name}\n`;
+            report += `Kelas        : ${studentClass}\n`;
+            report += `Tarikh/Masa  : ${dateStr}\n`;
+            report += `Jumlah Markah: ${scores.totalAuto} / 38 (Auto-Grade)\n`;
+            report += `------------------------------------\n\n`;
+
+            report += `--- BAHAGIAN 1: KATA HAMPIR SAMA MAKNA (${scores.b1}/8) ---\n`;
+            b1Data.forEach(q => {
+                const uAns = userB1[q.id] || 'Tiada';
+                const status = (uAns === q.ans) ? 'BETUL' : 'SALAH';
+                report += `${q.id}. Soalan: ${q.q}\n   Jawapan Pelajar: ${uAns} [${status} - Betul: ${q.ans}]\n\n`;
+            });
+
+            report += `--- BAHAGIAN 2: SUBJEK DAN PREDIKAT ---\n`;
+            b2Data.forEach(q => {
+                const sub = (userB2[q.id] && userB2[q.id].subjek) ? userB2[q.id].subjek : "Tiada";
+                const pred = (userB2[q.id] && userB2[q.id].predikat) ? userB2[q.id].predikat : "Tiada";
+                report += `${q.id}. Ayat: "${q.sentence}"\n   - Subjek Pelajar  : ${sub}\n   - Predikat Pelajar : ${pred}\n   (Cadangan Subjek : ${q.subjek})\n   (Cadangan Predikat: ${q.predikat})\n\n`;
+            });
+
+            report += `--- BAHAGIAN 3: JENIS AYAT (${scores.b3}/15) ---\n`;
+            b3Data.forEach(q => {
+                const uAns = userB3[q.id] || 'Tiada';
+                const status = (uAns === q.ans) ? 'BETUL' : 'SALAH';
+                report += `${q.id}. Ayat: "${q.q}"\n   Jawapan Pelajar: ${uAns} [${status} - Betul: ${q.ans}]\n\n`;
+            });
+
+            report += `--- BAHAGIAN 4: JENIS-JENIS AYAT PERINTAH ---\n`;
+            b4Data.forEach(q => {
+                const uVal = userB4[q.id] || 'Tiada jawapan ditulis';
+                report += `${q.id}. Arahan: ${q.type} (${q.desc})\n   Ayat Pelajar: ${uVal}\n   (Contoh Cadangan: ${q.sample})\n\n`;
+            });
+
+            report += `--- BAHAGIAN 5: PENJODOH BILANGAN (${scores.b5}/15) ---\n`;
+            b5Data.forEach(q => {
+                const uAns = userB5[q.id] || 'Tiada';
+                const status = (uAns === q.ans) ? 'BETUL' : 'SALAH';
+                const fullSentence = `${q.prefix}___${q.suffix}`;
+                report += `${q.id}. Soalan: ${fullSentence}\n   Jawapan Pelajar: ${uAns} [${status} - Betul: ${q.ans}]\n\n`;
+            });
+
+            report += `====================================\n`;
+            report += `Laporan ini dijana secara automatik.`;
+
+            return report;
+        }
+
+        function validateStudentInfo() {
+            const name = document.getElementById("studentName").value.trim();
+            const studentClass = document.getElementById("studentClass").value.trim();
+
+            if (!name || !studentClass) {
+                showToast("Sila isi Nama dan Kelas terlebih dahulu!", "error");
+                scrollToSection("sec-info");
+                return false;
+            }
+            return true;
+        }
+
+        function handleEmailSubmission() {
+            if (!validateStudentInfo()) return;
+
+            checkAllAnswers();
+
+            const report = generateReportText();
+            document.getElementById("modalReportText").value = report;
+            document.getElementById("reportModal").classList.remove("hidden");
+        }
+
+        // SILENT COPY HELPER TO AVOID URL OVERFLOW
+        function copyToClipboardSilent(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).catch(() => fallbackCopySilent(text));
+            } else {
+                fallbackCopySilent(text);
+            }
+        }
+
+        function fallbackCopySilent(text) {
+            const tempArea = document.createElement("textarea");
+            tempArea.value = text;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try { document.execCommand('copy'); } catch (err) {}
+            document.body.removeChild(tempArea);
+        }
+
+        // CARA 1: Buka Gmail Web (AUTOMATIC FULL COPY & OPEN)
+        function sendViaGmail() {
+            if (!validateStudentInfo()) return;
+            
+            checkAllAnswers();
+            const name = document.getElementById("studentName").value.trim();
+            const studentClass = document.getElementById("studentClass").value.trim();
+            const fullReport = generateReportText();
+
+            // Automatically copy full 100% complete report (all 48 questions & answers) to clipboard first
+            copyToClipboardSilent(fullReport);
+
+            const subject = encodeURIComponent(`Jawapan Latihan BM - ${name} (${studentClass})`);
+            const teacherEmail = "chernjiaying@yphs.edu.my";
+
+            // Safe URL body to avoid Gmail Error 400 URI Too Long while guiding student to paste full report
+            let bodyStr = `====================================\n`;
+            bodyStr += `  LAPORAN LATIHAN BAHASA MELAYU (LENGKAP)\n`;
+            bodyStr += `====================================\n`;
+            bodyStr += `Nama Pelajar : ${name}\n`;
+            bodyStr += `Kelas        : ${studentClass}\n`;
+            bodyStr += `Jumlah Markah: ${calculateScores().totalAuto} / 38 (Auto-Grade)\n`;
+            bodyStr += `====================================\n\n`;
+            bodyStr += `📌 [SILA PASTE / TAMPAL (Ctrl+V) DI SINI]\n`;
+            bodyStr += `Laporan LENGKAP merangkumi SEMUA 48 SOALAN, JAWAPAN PELAJAR, DAN JAWAPAN BETUL telah disalin secara automatik ke papan keratan (clipboard) anda.\n\n`;
+            bodyStr += `------------------------------------\n`;
+
+            const body = encodeURIComponent(bodyStr);
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${teacherEmail}&su=${subject}&body=${body}`;
+            
+            window.open(gmailUrl, '_blank');
+            showToast("Gmail dibuka! Laporan LENGKAP (semua 48 soalan & jawapan) telah disalin ke clipboard, sila tekan Paste (Ctrl+V)!", "info");
+        }
+
+        // CARA 2: Salin Teks Laporan (一键复制完整 48 题及答案)
+        function copyTextReport() {
+            if (!validateStudentInfo()) return;
+
+            checkAllAnswers();
+            const fullReport = generateReportText();
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(fullReport).then(() => {
+                    showToast("Laporan LENGKAP (semua 48 soalan & jawapan) telah disalin ke clipboard!", "success");
+                }).catch(() => {
+                    fallbackCopySilent(fullReport);
+                    showToast("Laporan LENGKAP (semua 48 soalan & jawapan) telah disalin ke clipboard!", "success");
+                });
+            } else {
+                fallbackCopySilent(fullReport);
+                showToast("Laporan LENGKAP (semua 48 soalan & jawapan) telah disalin ke clipboard!", "success");
+            }
+        }
+
+        // CARA 3: Buka Mailto Default
+        function triggerMailto() {
+            if (!validateStudentInfo()) return;
+
+            checkAllAnswers();
+            const name = document.getElementById("studentName").value.trim();
+            const studentClass = document.getElementById("studentClass").value.trim();
+            const fullReport = generateReportText();
+
+            copyToClipboardSilent(fullReport);
+
+            const subject = encodeURIComponent(`Jawapan Latihan BM - ${name} (${studentClass})`);
+            const teacherEmail = "chernjiaying@yphs.edu.my";
+
+            let bodyStr = `====================================\n`;
+            bodyStr += `  LAPORAN LATIHAN BAHASA MELAYU (LENGKAP)\n`;
+            bodyStr += `====================================\n`;
+            bodyStr += `Nama Pelajar : ${name}\n`;
+            bodyStr += `Kelas        : ${studentClass}\n`;
+            bodyStr += `Jumlah Markah: ${calculateScores().totalAuto} / 38 (Auto-Grade)\n`;
+            bodyStr += `====================================\n\n`;
+            bodyStr += `📌 [SILA PASTE / TAMPAL (Ctrl+V) DI SINI]\n`;
+            bodyStr += `Laporan LENGKAP merangkumi SEMUA 48 SOALAN, JAWAPAN PELAJAR, DAN JAWAPAN BETUL telah disalin secara automatik ke papan keratan (clipboard) anda.\n\n`;
+
+            const body = encodeURIComponent(bodyStr);
+            window.location.href = `mailto:${teacherEmail}?subject=${subject}&body=${body}`;
+        }
+
+        function closeModal() {
+            document.getElementById("reportModal").classList.add("hidden");
+        }
+
+        // UTILITY FUNCTIONS
+
+        function scrollToSection(id) {
+            const target = document.getElementById(id);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function showToast(message, type = "success") {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toast-msg");
+            const toastIcon = document.getElementById("toast-icon");
+            if (!toast || !toastMsg || !toastIcon) return;
+
+            toastMsg.innerText = message;
+
+            if (type === "success") {
+                toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-lg";
+            } else if (type === "error") {
+                toastIcon.className = "fa-solid fa-triangle-exclamation text-rose-400 text-lg";
+            } else {
+                toastIcon.className = "fa-solid fa-circle-info text-blue-400 text-lg";
+            }
+
+            toast.classList.remove("translate-y-20", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                toast.classList.add("translate-y-20", "opacity-0");
+                toast.classList.remove("translate-y-0", "opacity-100");
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
